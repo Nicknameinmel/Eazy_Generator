@@ -11,21 +11,21 @@ window.title('EZGE')
  
 
 window.geometry('500x600') 
-#canvas = tk.Canvas(window, height=100, width=500)
-#image_file = tk.PhotoImage(file='./Mazars_l.gif')
-#image = canvas.create_image(250, 0, anchor='n',image=image_file)
+canvas = tk.Canvas(window, height=100, width=400)
+image_file = tk.PhotoImage(file='./Mazars_l.gif')
+image = canvas.create_image(170, 10, anchor='n',image=image_file)
 #canvas.pack(side='bottom')
-
-tk.Label(window, text='Mazars', font=('Arial', 20)).place(x=10, y=550) 
+canvas.place(x=0,y=520)
 
 tk.Label(window, text='Name:', font=('Arial', 14)).place(x=10, y=90)
 tk.Label(window, text='Position:', font=('Arial', 14)).place(x=10, y=130)
 tk.Label(window, text='Device:', font=('Arial', 14)).place(x=10, y=170)
-tk.Label(window, text='S/N:', font=('Arial', 14)).place(x=10, y=210)
-tk.Label(window, text='Assest Number:', font=('Arial', 14)).place(x=10, y=250)
-tk.Label(window, text='Media Type:', font=('Arial', 14)).place(x=10, y=290)
-tk.Label(window, text='Model:', font=('Arial', 14)).place(x=10, y=330)
-tk.Label(window, text='SN:', font=('Arial', 14)).place(x=10, y=370)
+tk.Label(window, text='Model:', font=('Arial', 14)).place(x=10, y=210)
+tk.Label(window, text='S/N:', font=('Arial', 14)).place(x=10, y=250)
+tk.Label(window, text='Assest Number:', font=('Arial', 14)).place(x=10, y=290)
+tk.Label(window, text='Media Type:', font=('Arial', 14)).place(x=10, y=330)
+tk.Label(window, text='Model(HD):', font=('Arial', 14)).place(x=10, y=370)
+tk.Label(window, text='SN:', font=('Arial', 14)).place(x=10, y=410)
  
 
 v1 = tk.StringVar()
@@ -60,68 +60,62 @@ v8 = tk.StringVar()
 e8 = tk.Entry(window, textvariable=v8, font=('Arial', 14))
 e8.place(x=160,y=370)
 #
-#v9 = tk.StringVar()
-#e9 = tk.Entry(window, textvariable=v9, font=('Arial', 14))
-#e9.place(x=160,y=380)
+v9 = tk.StringVar()
+e9 = tk.Entry(window, textvariable=v9, font=('Arial', 14))
+e9.place(x=160,y=410)
     
 def print_note():
     Name = v1.get()
     Position = v2.get()
     Manufacturer = v3.get()
-    SN = v4.get()
-    Assest_Number = v5.get()
-    Manufacturer_storage = v6.get()
-    Model = v7.get()
-    Interface = v8.get()
+    M_pc = v4.get()
+    SN = v5.get()
+    Assest_Number = v6.get()
+    Manufacturer_storage = v7.get()
+    Model = v8.get()
+    Interface = v9.get()
 
     if Name == '':
-        Name = 'N/A, '
+        Name = ''
     else:
         print('Name:'+Name)
         print('')
         Name = Name+', '
 
     if Position == '':
-        Position = 'Position:N/A'
+        Position = ''
     else:
         print('Position:'+Position)
         print('')
         Position = 'Position:'+Position
 
     if Manufacturer == '':
-        Manufacturer = 'Device:N/A, '
+        Manufacturer = ''
     else:
         print('Manufacturer:'+Manufacturer)
         print('')
-        Manufacturer = 'Device:'+Manufacturer+', '
-
-    if Model == '':
-        Model = 'Model:N/A, '
-    else:
-        print('Model:'+Model)
-        print('')
-        Model = 'Model:'+Model+', '
+        Manufacturer = 'Device:'+Manufacturer+' '+M_pc+', '
 
     if SN == '':
-        SN = 'S/N:N/A, '
+        SN = ''
     else:
         print('S/N:'+SN)
         print('')
         SN = 'S/N:'+SN+', '
         
     if Assest_Number == '':
-        Assest_Number = 'Assest Number:N/A, '
+        Assest_Number = ''
     else:
         print('Assest Number:'+Assest_Number)
         print('')
-        Assest_Number = 'Assest Number:'+Assest_Number+', '
+        Assest_Number = 'Assest Number:'+Assest_Number
 
     if Manufacturer_storage == '':
-        Manufacturer_storage = 'Media Type:N/A, '
+        Manufacturer_storage = ''
     else:
         print('Manufacturer_storage:'+Manufacturer_storage)
         print('')
-        Manufacturer_storage = 'Media Type:'+Manufacturer_storage+', '
+        Manufacturer_storage = 'Media Type:'+Manufacturer_storage+' '+Model+', '
 
     #if Storage == '':
     #    Storage = 'N/A'
@@ -131,7 +125,7 @@ def print_note():
     #    Storage ='Storage:'+Storage+' '
 
     if Interface == '':
-        Interface = 'SN:N/A'
+        Interface = ''
     else:
         print('Interface:'+Interface)
         print('')
@@ -140,7 +134,7 @@ def print_note():
     folder_name = v10.get()
     c = path.get()
     with open(''+c+'/'+folder_name+'/03_Notes/Notes.txt','w') as f:
-        f.write(Name+Position+"; "+Manufacturer+SN+Assest_Number+"; "+Manufacturer_storage+Model+Interface)
+        f.write(Name+Position+"; "+Manufacturer+SN+Assest_Number+"; "+Manufacturer_storage+Interface)
 
 b1 = tk.Button(window, text='Generate Notes', width=15, height=2, font=('Times New Roman', 16),command=print_note)
 b1.place(x=140,y=430)
